@@ -1,0 +1,69 @@
+button.custom__btn {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  outline: none;
+  border: none;
+}
+
+button.custom__btn.fixed {
+  width: 50px;
+  height: 50px;
+}
+
+button.custom__btn:active {
+  scale: 0.95;
+}
+
+.purple {
+  background-color: violet;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.red {
+  background-color: salmon;
+}
+
+.blue {
+  background-color: lightblue;
+}
+
+.inner__col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner__col-portion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+
+.inner__col-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner__col-element > span.icon {
+  font-size: 2rem;
+}
+
+.inner__col-element > span.name {
+  font-weight: bold;
+}
+
+.fancy_number {
+  font-size: 2rem;
+  font-weight: bold;
+}
