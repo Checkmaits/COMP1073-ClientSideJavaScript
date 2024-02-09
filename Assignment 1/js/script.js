@@ -148,6 +148,9 @@ function incrementPlace() {
   speechSynthesis.speak(utterance);
 }
 
+/**
+ * Generates the story given the current selected elements.
+ */
 function generateStory() {
   const person = people[selectedPerson];
   const action = actions[selectedAction];
@@ -164,6 +167,9 @@ function generateStory() {
   speechSynthesis.speak(utterance);
 }
 
+/**
+ * Generates a random story
+ */
 function generateRandom() {
   const person = people[Math.floor(Math.random() * people.length)];
   const action = actions[Math.floor(Math.random() * actions.length)];
@@ -180,6 +186,7 @@ function generateRandom() {
   speechSynthesis.speak(utterance);
 }
 
+// Initial population of the columns
 populatePeople();
 populateActions();
 populateAdjectives();
