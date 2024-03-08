@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Lab 2 - Brock Mowry</title>
+  </head>
+  <body>
+    <header class="py-3 text-center">
+      <h1 class="fw-bold mb-0">Car Builder</h1>
+    </header>
+    <main class="container mt-4">
+      <section class="car-form">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add car to inventory</h5>
+            <form class="card-form" id="carForm">
+              <div class="row">
+                <!-- Make -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Make</label>
+                    <input type="text" name="make" class="form-control" required placeholder="(ex: Honda)" />
+                  </div>
+                </div>
+                <!-- Model -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Model</label>
+                    <input type="text" name="model" class="form-control" required placeholder="(ex: Civic Type R)" />
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <!-- Year -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Year</label>
+                    <input type="number" name="year" class="form-control" required placeholder="(ex: 2020)" />
+                  </div>
+                </div>
+                <!-- Color -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Color</label>
+                    <input type="text" name="color" class="form-control" required placeholder="(ex: White)" />
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <!-- SKU -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>SKU No.</label>
+                    <input type="text" name="sku" class="form-control" required placeholder="(ex: OT388-OTTO-WHITE)" />
+                  </div>
+                </div>
+                <!-- Manufacturer -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Manufacturer</label>
+                    <input
+                      type="text"
+                      name="manufacturer"
+                      class="form-control"
+                      required
+                      placeholder="(ex: Ottomobile)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <!-- Scale -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Scale</label>
+                    <input type="text" name="scale" class="form-control" required placeholder="(ex: 1/18)" />
+                  </div>
+                </div>
+                <!-- Price -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Price</label>
+                    <input typ="number" name="price" class="form-control" required placeholder="(ex: 141.23)" />
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <!-- Type -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Type</label>
+                    <input type="text" name="type" class="form-control" required placeholder="(ex: sports car)" />
+                  </div>
+                </div>
+                <!-- Packaging -->
+                <div class="col">
+                  <div class="form-group">
+                    <label>Packaging</label>
+                    <input
+                      type="text"
+                      name="packaging"
+                      class="form-control"
+                      required
+                      placeholder="(ex: retail gift box)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <button type="submit" class="btn btn-outline-primary w-100">Add car</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="car-list mt-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Car inventory</h5>
+            <table class="table table-striped" id="car-table">
+              <thead>
+                <tr>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Year</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">SKU</th>
+                  <th scope="col">Manufacturer</th>
+                  <th scope="col">Scale</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Packaging</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="car-modal-overlay">
+      <div class="car-modal bg-white rounded-3 p-4">
+        <!-- modal title -->
+        <h5 class="car-modal-title fw-bold"></h5>
+        <!-- modal text -->
+        <pre class="car-modal-pre mb-0"></pre>
+        <!-- modal footer -->
+        <div class="car-modal-footer mt-4 text-end">
+          <button onclick="return closeModal();" class="car-modal-exit btn btn-transparent text-primary">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer bg-dark p-3">
+      <div class="text-center text-white mb-0">Brock Mowry - 200475649</div>
+    </footer>
+
+    <!-- Organizing my JS -->
+    <script src="js/car.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+      const form = document.forms.carForm;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const car = new Car(
+          formData.get("make"),
+          formData.get("model"),
+          formData.get("year"),
+          formData.get("color"),
+          formData.get("sku"),
+          formData.get("manufacturer"),
+          formData.get("scale"),
+          formData.get("price"),
+          formData.get("type"),
+          formData.get("packaging")
+        );
+
+        addCar(car);
+        form.reset();
+
+        return true; // just to make it return something
+      });
+
+      function closeModal(e) {
+        document.querySelector(".car-modal-overlay").style.display = "none";
+        return true; // just to make it return something
+      }
+    </script>
+  </body>
+</html>
